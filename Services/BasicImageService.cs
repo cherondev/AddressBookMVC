@@ -6,7 +6,7 @@ namespace AddressBook.Services
     {
         public string ConvertByteArrayToFile(byte[] fileData, string extension)
         {
-            if (fileData == null) return string.Empty;
+            if (fileData is null) return string.Empty;
 
             string imageBase64Data = Convert.ToBase64String(fileData);
             return $"data:{extension};base64,{imageBase64Data}";

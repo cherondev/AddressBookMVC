@@ -19,7 +19,7 @@ namespace AddressBook.Controllers
         public ContactsController(ApplicationDbContext context, IImageService imageService)
         {
             _context = context;
-            this._imageService = imageService;
+            _imageService = imageService;
         }
 
         // GET: Contacts
@@ -65,7 +65,7 @@ namespace AddressBook.Controllers
             {
                 if (contact.ImageFile != null)
                 {
-                    contact.ImageData = await _imageService.ConvertFileToByteArraySync(contact.ImageFile);
+                    contact.ImageData = await _imageService.ConvertFileToByteArrayAsync(contact.ImageFile);
                     contact.ImageType = contact.ImageFile.ContentType;
                 }
                 _context.Add(contact);

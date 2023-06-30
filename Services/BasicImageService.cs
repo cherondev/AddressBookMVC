@@ -12,7 +12,7 @@ namespace AddressBook.Services
             return $"data:{extension};base64,{imageBase64Data}";
         }
 
-        public async Task<byte[]> ConvertFileToByteArraySync(IFormFile file)
+        public async Task<byte[]> ConvertFileToByteArrayAsync(IFormFile file)
         {
             using MemoryStream memoryStream = new();
             await file.CopyToAsync(memoryStream);

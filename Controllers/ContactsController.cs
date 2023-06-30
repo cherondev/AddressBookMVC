@@ -69,6 +69,10 @@ namespace AddressBook.Controllers
                     contact.ImageType = contact.ImageFile.ContentType;
                 }
                 _context.Add(contact);
+
+                DateTime saveUtcNow = DateTime.UtcNow;
+                contact.Created = DateTime.SpecifyKind(contact.Created, DateTimeKind.Utc);
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -158,7 +162,7 @@ namespace AddressBook.Controllers
             {
                 _context.Contacts.Remove(contact);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

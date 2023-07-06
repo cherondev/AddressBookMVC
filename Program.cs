@@ -5,6 +5,20 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 
+//public static async Task Main(string[] args)
+//{
+//    var host = CreateHostBuilder(args).Build();
+
+//    var dbContext = host.Servces.CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+//    await dbContext.Database.MigrateAsync();
+
+//    host.Run();
+//}
+
+
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -13,6 +27,7 @@ builder.Services.AddControllersWithViews();
 //Add npgsql service
 var configuration = builder.Configuration;
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
+//options.UseNpgsql(DataUtility.GetConnectionString(Configuration)
 
 //IImage service registration
 builder.Services.AddScoped<IImageService, BasicImageService>();

@@ -112,6 +112,10 @@ namespace AddressBook.Controllers
                 try
                 {
                     _context.Update(contact);
+
+                    DateTime saveUtcNow = DateTime.UtcNow;
+                    contact.Created = DateTime.SpecifyKind(contact.Created, DateTimeKind.Utc);
+
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
